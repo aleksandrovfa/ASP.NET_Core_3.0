@@ -9,21 +9,22 @@ using OnlineShopWebApp.Models;
 
 namespace OnlineShopWebApp.Controllers
 {
-    public class CalculatorController : Controller
+    public class CalcController : Controller
     {
-        private readonly ILogger<CalculatorController> _logger;
+        private readonly ILogger<CalcController> _logger;
         // branch 1
-        public CalculatorController(ILogger<CalculatorController> logger)
+        public CalcController(ILogger<CalcController> logger)
         {
             _logger = logger;
         }
 
-        public string Index(string a = "0", string b = "0", string op = "+")
+        public string Index(string a = "0", string b = "0", string c = "+")
         {
             double da = Convert.ToDouble(a);
             double db = Convert.ToDouble(b);
             double result = 0;
-            switch (op)
+            if (c == null) c = "+";
+            switch (c)
             {
                 case "+":
                     result = da + db;
@@ -34,9 +35,12 @@ namespace OnlineShopWebApp.Controllers
                 case "*":
                     result = da * db;
                     break;
-                
+                case "/":
+                    result = da / db;
+                    break;
+
             }
-            return $"{da} {op} {db} = {result}";
+            return $"{da} {c} {db} = {result}";
         }
 
        
