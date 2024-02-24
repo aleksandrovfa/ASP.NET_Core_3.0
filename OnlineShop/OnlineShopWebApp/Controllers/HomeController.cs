@@ -12,15 +12,41 @@ namespace OnlineShopWebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private List<Product> _products;
         // branch 1
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _products = new List<Product>();
+            _products.Add(new Product
+            {
+                Id = 1,
+                Name = "Name1",
+                Cost = 11,
+                Description = "Decrip1"
+            });
+
+            _products.Add(new Product
+            {
+                Id = 2,
+                Name = "Name2",
+                Cost = 12,
+                Description = "Decrip2"
+            });
+
+            _products.Add(new Product
+            {
+                Id = 3,
+                Name = "Name3",
+                Cost = 13,
+                Description = "Decrip3"
+            });
+
         }
 
-        public IActionResult Index()
+        public string Index()
         {
-            return View();
+            return String.Join("\n\n", _products.Select(x => x.ToString()).ToList());
         }
 
         public IActionResult Privacy()
