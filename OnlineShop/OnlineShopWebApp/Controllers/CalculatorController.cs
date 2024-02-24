@@ -18,11 +18,25 @@ namespace OnlineShopWebApp.Controllers
             _logger = logger;
         }
 
-        public string Index(string a = "0", string b = "0")
+        public string Index(string a = "0", string b = "0", string op = "+")
         {
-            string result = (Convert.ToDouble(a) + Convert.ToDouble(b)).ToString();
-
-            return $"{a} + {b} = {result}";
+            double da = Convert.ToDouble(a);
+            double db = Convert.ToDouble(b);
+            double result = 0;
+            switch (op)
+            {
+                case "+":
+                    result = da + db;
+                    break;
+                case "-":
+                    result = da - db;
+                    break;
+                case "*":
+                    result = da * db;
+                    break;
+                
+            }
+            return $"{da} {op} {db} = {result}";
         }
 
        
