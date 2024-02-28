@@ -1,0 +1,15 @@
+﻿@model Product
+
+
+<div>
+    <img  src="@Model.Link" height="500">
+    <div class="card-body">
+        <h6> @Model.Name</h6>
+        <p>@Model.Cost руб</p>
+        <p class="card-text">@Model.Description</p>
+        <a href="/cart/add/@Model.Id" class="btn btn-primary">В корзину</a>
+        <a href="/home/index" class="btn btn-primary">Продолжить покупки</a>
+    </div>
+</div>
+
+

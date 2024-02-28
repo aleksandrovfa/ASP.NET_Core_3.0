@@ -12,6 +12,7 @@ namespace OnlineShopWebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ProductRepository productRepository = new ProductRepository();
         // branch 1
         public HomeController(ILogger<HomeController> logger)
         {
@@ -20,8 +21,14 @@ namespace OnlineShopWebApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var products = productRepository.GetAll();
+            return View(products);
         }
+        public IActionResult Cart()
+        {
+            return View(CartLineRepository.Lines);
+        }
+
 
         public IActionResult Privacy()
         {

@@ -18,14 +18,20 @@ namespace OnlineShopWebApp.Controllers
         {
             productRepository = new ProductRepository();
         }
-        public string Index(int id)
+        //public string Index(int id)
+        //{
+        //    var product = productRepository.TryGetById(id);
+        //    if (product == null)
+        //    {
+        //        return "Продукта с таким id не существует";
+        //    }
+        //    return $"{product}\n{product.Description}";
+        //}
+
+        public IActionResult Index(int id)
         {
-            var product = productRepository.TryGetById(id);
-            if (product == null)
-            {
-                return "Продукта с таким id не существует";
-            }
-            return $"{product}\n{product.Description}";
+            var product = productRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            return View(product);
         }
     }
 }
