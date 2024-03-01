@@ -17,15 +17,14 @@ else
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    @foreach (var @cartLine in Model)
-                    {
+                @foreach (var @cartLine in Model)
+                {
+                    <tr>
                         <td>@cartLine.Product.Name</td>
                         <td>@cartLine.Cost</td>
                         <td>@cartLine.Quantity</td>
-                    }
-                </tr>
-
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
