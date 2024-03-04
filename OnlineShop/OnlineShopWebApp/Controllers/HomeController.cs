@@ -11,12 +11,10 @@ namespace OnlineShopWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ProductRepository productRepository = new ProductRepository();
-        // branch 1
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ProductRepository productRepository;
+        public HomeController(ProductRepository productRepository)
         {
-            _logger = logger;
+            this.productRepository = productRepository;
         }
 
         public IActionResult Index()
@@ -24,21 +22,12 @@ namespace OnlineShopWebApp.Controllers
             var products = productRepository.GetAll();
             return View(products);
         }
-        public IActionResult Cart()
-        {
-            return View(CartLineRepository.Lines);
-        }
+        //public IActionResult Cart()
+        //{
+        //    return View(CartRepository.Lines);
+        //}
 
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }

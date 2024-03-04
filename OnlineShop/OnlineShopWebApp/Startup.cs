@@ -25,6 +25,10 @@ namespace OnlineShopWebApp
         {
             services.AddControllersWithViews();
 
+            services.AddSingleton<ProductRepository>();
+            services.AddSingleton<CartRepository>();
+            services.AddSingleton<Constants>();
+
             services.AddDistributedMemoryCache();
 
             services.AddSession(options =>

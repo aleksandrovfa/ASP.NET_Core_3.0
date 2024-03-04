@@ -1,47 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using OnlineShopWebApp.Models;
 using System.Linq;
 using System.Web;
+using Constants = OnlineShopWebApp.Constants;
 
 namespace OnlineShopWebApp.Controllers
 {
     public class CartController : Controller
     {
-        private ProductRepository repository;
-        public CartController()
+        private readonly Constants constants;
+        private readonly ProductRepository productRepository;
+        private readonly CartRepository cartRepository;
+        public CartController(CartRepository cartRepository, ProductRepository productRepository, Constants constants)
         {
-            repository = new ProductRepository();
+            this.productRepository = productRepository;
+            this.cartRepository = cartRepository;
+            this.constants = constants;
         }
 
         public IActionResult Index()
         {
-            return View(CartLineRepository.Lines);
+            
+            return View(cartRepository.TryGetByUserId(constants.UserId));
         }
 
 
         public IActionResult Add(int productId)
         {
-            Product product = repository.GetAll()
+            Product product = productRepository.GetAll()
                 .FirstOrDefault(g => g.Id == productId);
 
             if (product != null)
             {
-                CartLineRepository.AddItem(product, 1);
+                cartRepository.AddItem(product, constants.UserId);
             }
             return RedirectToAction("Index");
         }
 
-        public IActionResult Remove(int productId)
-        {
-            Product game = repository.GetAll()
-                .FirstOrDefault(g => g.Id == productId);
+        //public IActionResult Remove(int productId)
+        //{
+        //    Product game = productRepository.GetAll()
+        //        .FirstOrDefault(g => g.Id == productId);
 
-            if (game != null)
-            {
-                CartLineRepository.RemoveLine(game);
-            }
-            return RedirectToAction("Index");
-        }
+        //    if (game != null)
+        //    {
+        //        CartRepository.RemoveLine(game);
+        //    }
+        //    return RedirectToAction("Index");
+        //}
 
         //public Cart GetCart()
         //{
