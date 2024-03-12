@@ -12,9 +12,9 @@ namespace OnlineShopWebApp.Controllers
 
     public class ProductController : Controller
     {
-        private readonly ProductRepository productRepository;
+        private readonly InMemoryProductRepository productRepository;
 
-        public ProductController(ProductRepository productRepository)
+        public ProductController(InMemoryProductRepository productRepository)
         {
             this.productRepository = productRepository;
         }

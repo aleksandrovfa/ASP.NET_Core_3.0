@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnlineShopWebApp
 {
-    public class ProductRepository
+    public class InMemoryProductRepository : IProductRepository
     {
         private  List<Product> products = new List<Product>()
         {
@@ -29,7 +29,7 @@ namespace OnlineShopWebApp
             return products;
         }
 
-        public Product TryGetById(int id)
+        public Product GetById(int id)
         {
             foreach (var product in products)
             {

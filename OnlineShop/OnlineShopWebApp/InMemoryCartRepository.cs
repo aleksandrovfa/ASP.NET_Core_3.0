@@ -5,7 +5,7 @@ using OnlineShopWebApp.Models;
 
 namespace OnlineShopWebApp
 {
-    public class CartRepository
+    public class InMemoryCartRepository : ICartRepository
     {
         public  List<Cart> carts = new List<Cart>();
 
@@ -57,7 +57,7 @@ namespace OnlineShopWebApp
             }
         }
 
-        public void RemoveLine(Product product, string userId)
+        public void RemoveItem(Product product, string userId)
         {
             var cart = TryGetByUserId(userId);
             if(cart != null)
@@ -65,21 +65,6 @@ namespace OnlineShopWebApp
                 cart.Items.RemoveAll(l => l.Product.Id == product.Id);
             }
         }
-
-        //public  decimal ComputeTotalValue()
-        //{
-        //    return lineCollection.Sum(e => e.Cost);
-
-        //}
-        //public  void Clear()
-        //{
-        //    lineCollection.Clear();
-        //}
-
-        //public  IEnumerable<CartItem> Lines
-        //{
-        //    get { return lineCollection; }
-        //}
     }
 
     

@@ -3,16 +3,16 @@ using Microsoft.VisualBasic;
 using OnlineShopWebApp.Models;
 using System.Linq;
 using System.Web;
-using Constants = OnlineShopWebApp.Constants;
+using Constants = OnlineShopWebApp.InMemoryConstants;
 
 namespace OnlineShopWebApp.Controllers
 {
     public class CartController : Controller
     {
-        private readonly Constants constants;
-        private readonly ProductRepository productRepository;
-        private readonly CartRepository cartRepository;
-        public CartController(CartRepository cartRepository, ProductRepository productRepository, Constants constants)
+        private readonly IConstants constants;
+        private readonly IProductRepository productRepository;
+        private readonly ICartRepository cartRepository;
+        public CartController(ICartRepository cartRepository, IProductRepository productRepository, IConstants constants)
         {
             this.productRepository = productRepository;
             this.cartRepository = cartRepository;
