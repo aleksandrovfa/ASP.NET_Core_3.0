@@ -1,6 +1,13 @@
-﻿namespace OnlineShopWebApp
+﻿using OnlineShopWebApp.Models;
+using System.Collections.Generic;
+
+namespace OnlineShopWebApp
 {
-    public class IProductRepository
+    public interface IProductRepository
     {
+        List<Product> GetAll();
+
+        Product GetById(int id);
+        
     }
 }

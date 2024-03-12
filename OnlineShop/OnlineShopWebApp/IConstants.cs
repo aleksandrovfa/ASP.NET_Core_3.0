@@ -2,5 +2,6 @@
 {
     public interface IConstants
     {
+        string UserId { get; }
     }
 }
