@@ -1,6 +1,6 @@
 ﻿@model Cart
 
-@if (@Model.Items.Count() == 0)
+@if (@Model == null || @Model.Items.Count() == 0)
 {
     <h3>Корзина пустая</h3>
 }
@@ -14,21 +14,27 @@ else
                     <th>Цена</th>
                     <th>Количество</th>
                     <th>Стоимость</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var @cartLine in Model.Items)
+                @foreach (var @cartItem in Model.Items)
                 {
                     <tr>
-                        <td>@cartLine.Product.Name</td>
-                        <td>@cartLine.Product.Cost</td>
-                        <td>@cartLine.Quantity</td>
-                        <td>@cartLine.Cost</td>
+                        <td>@cartItem.Product.Name</td>
+                        <td>@cartItem.Product.Cost</td>
+                        <td>@cartItem.Quantity</td>
+                        <td>@cartItem.Cost</td>
+                        <td>
+                            <a href="cart/add?productId=@cartItem.Product.Id" class="btn btn-primary">  +  </a>
+                            <a href="cart/remove?productId=@cartItem.Product.Id" class="btn btn-secondary">  -  </a>
+                        </td>
                     </tr>
                 }
             </tbody>
             <tfoot>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <th>Итого:</th>

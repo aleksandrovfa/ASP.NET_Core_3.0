@@ -11,8 +11,8 @@ namespace OnlineShopWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly InMemoryProductRepository productRepository;
-        public HomeController(InMemoryProductRepository productRepository)
+        private readonly IProductRepository productRepository;
+        public HomeController(IProductRepository productRepository)
         {
             this.productRepository = productRepository;
         }

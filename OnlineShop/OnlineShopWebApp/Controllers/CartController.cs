@@ -38,17 +38,17 @@ namespace OnlineShopWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        //public IActionResult Remove(int productId)
-        //{
-        //    Product game = productRepository.GetAll()
-        //        .FirstOrDefault(g => g.Id == productId);
+        public IActionResult Remove(int productId)
+        {
+            Product product = productRepository.GetAll()
+                .FirstOrDefault(g => g.Id == productId);
 
-        //    if (game != null)
-        //    {
-        //        CartRepository.RemoveLine(game);
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+            if (product != null)
+            {
+                cartRepository.RemoveItem(product, constants.UserId);
+            }
+            return RedirectToAction("Index");
+        }
 
         //public Cart GetCart()
         //{

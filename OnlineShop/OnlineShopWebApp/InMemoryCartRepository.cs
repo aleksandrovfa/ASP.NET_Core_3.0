@@ -28,13 +28,13 @@ namespace OnlineShopWebApp
                     Id = Guid.NewGuid(),
                     UserId = userId,
                     Items = new List<CartItem>()
-                    {
-                        new CartItem()
-                        {
-                            Product = product,
-                            Quantity = 1
-                        }
-                    }
+                    //{
+                    //    new CartItem()
+                    //    {
+                    //        Product = product,
+                    //        Quantity = 1
+                    //    }
+                    //}
                 };
                 carts.Add(cart);
             }
@@ -60,9 +60,20 @@ namespace OnlineShopWebApp
         public void RemoveItem(Product product, string userId)
         {
             var cart = TryGetByUserId(userId);
-            if(cart != null)
+
+            CartItem line = cart.Items
+                .Where(g => g.Product.Id == product.Id)
+                .FirstOrDefault();
+
+
+            if (line.Quantity == 1)
             {
-                cart.Items.RemoveAll(l => l.Product.Id == product.Id);
+                cart.Items.Remove(line);
+                
+            }
+            else
+            {
+                line.Quantity -= 1;
             }
         }
     }
