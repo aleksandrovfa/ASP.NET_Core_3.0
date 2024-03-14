@@ -50,16 +50,11 @@ namespace OnlineShopWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        //public Cart GetCart()
-        //{
-        //    Cart cart = (Cart)Session["Cart"];
-        //    if (cart == null)
-        //    {
-        //        cart = new Cart();
-        //        Session["Cart"] = cart;
-        //    }
-        //    return cart;
-        //}
+        public IActionResult Clear()
+        {
+            cartRepository.Clear(constants.UserId);
+            return RedirectToAction("Index");
+        }
     }
 }
 

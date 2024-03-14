@@ -17,7 +17,7 @@ namespace OnlineShopWebApp
 
         public  void AddItem(Product product, string userId)
         {
-
+            
 
             var cart = TryGetByUserId(userId);
 
@@ -28,13 +28,6 @@ namespace OnlineShopWebApp
                     Id = Guid.NewGuid(),
                     UserId = userId,
                     Items = new List<CartItem>()
-                    //{
-                    //    new CartItem()
-                    //    {
-                    //        Product = product,
-                    //        Quantity = 1
-                    //    }
-                    //}
                 };
                 carts.Add(cart);
             }
@@ -75,6 +68,12 @@ namespace OnlineShopWebApp
             {
                 line.Quantity -= 1;
             }
+        }
+
+        public void Clear(string userId)
+        {
+            var cart = TryGetByUserId(userId);
+            cart.Items = new List<CartItem>();
         }
     }
 
